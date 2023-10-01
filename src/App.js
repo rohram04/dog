@@ -1,23 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import BreedList from "./components/BreedList";
+import Gallery from "./components/Gallery.jsx";
+import "./App.css";
 
 function App() {
+  const [breeds, setBreeds] = useState([]);
+  const [selectedBreeds, setSelectedBreeds] = useState([]);
+  const [images, setImages] = useState({});
+  const [hiddenBreeds, setHiddenBreeds] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    const getBreeds = async () => {
+      const response = await fetch("https://dog.ceo/api/breeds/list/all");
+      const { message } = await response.json();
+      let breeds = [];
+      for (const [breed, specificBreeds] of Object.entries(message)) {
+        breeds = [
+          ...breeds,
+          breed,
+          // ...specificBreeds.map((specificBreed) => breed + "-" + specificBreed),
+        ];
+      }
+      setBreeds(breeds);
+    };
+
+    getBreeds();
+  }, []);
+
+  useEffect(() => {
+    const getSelectedBreeds = async () => {
+      let images = [];
+      for (let breed of selectedBreeds) {
+        const response = await fetch(
+          `https://dog.ceo/api/breed/${breed}/images`
+        );
+        const { message } = await response.json();
+        images[breed] = message;
+      }
+      console.log(images);
+      setImages(images);
+    };
+
+    getSelectedBreeds();
+  }, [selectedBreeds]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex">
+      <BreedList
+        breeds={breeds}
+        selectedBreeds={selectedBreeds}
+        setSelectedBreeds={setSelectedBreeds}
+        searchText={searchText}
+        setSearchText={setSearchText}
+      />
+      <Gallery
+        images={images}
+        searchText={searchText}
+        hiddenBreeds={hiddenBreeds}
+        setHiddenBreeds={setHiddenBreeds}
+      />
     </div>
   );
 }
