@@ -38,7 +38,6 @@ function App() {
         const { message } = await response.json();
         images[breed] = message;
       }
-      console.log(images);
       setImages(images);
     };
 
