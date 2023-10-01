@@ -17,7 +17,7 @@ export default function BreedList({
     >
       <input
         onChange={(event) => {
-          setSearchText(event.target.value.toLowerCase());
+          setSearchText(event.target.value);
         }}
         className="bg-slate-200 w-full rounded-md p-2 outline-none"
         placeholder="Search a breed"
@@ -26,7 +26,7 @@ export default function BreedList({
       ></input>
       <ul className="py-2 space-y-1.5 h-inherit overflow-y-scroll no-scrollbar snap-y">
         {breeds
-          .filter((breed) => breed.includes(searchText))
+          .filter((breed) => breed.includes(searchText.toLowerCase()))
           .map((breed) => {
             return (
               <li className="snap-center">
