@@ -1,22 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function BreedList({
   hidden,
   selectedBreeds,
   breeds,
   setSelectedBreeds,
-  searchText,
-  setSearchText,
 }) {
-  const [timer, setTimer] = useState(null);
-
-  const handleChange = async (event) => {
-    clearTimeout(timer);
-    const newTimer = setTimeout(async () => {
-      setSearchText(event.target.value.toLowerCase());
-    }, 300);
-    setTimer(newTimer);
-  };
+  const [searchText, setSearchText] = useState("");
 
   return (
     <div
@@ -26,10 +16,13 @@ export default function BreedList({
       }
     >
       <input
-        onChange={handleChange}
+        onChange={(event) => {
+          setSearchText(event.target.value);
+        }}
         className="bg-slate-200 w-full rounded-md p-2 outline-none"
         placeholder="Search a breed"
         type="text"
+        value={searchText}
       ></input>
       <ul className="py-2 space-y-1.5 h-inherit overflow-y-scroll no-scrollbar snap-y">
         {breeds.map((breed) => {

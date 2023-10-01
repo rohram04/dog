@@ -8,7 +8,6 @@ function App() {
   const [selectedBreeds, setSelectedBreeds] = useState([]);
   const [images, setImages] = useState({});
   const [hiddenBreeds, setHiddenBreeds] = useState([]);
-  const [searchText, setSearchText] = useState("");
   const [galleryHidden, setGalleryHidden] = useState(true);
 
   useEffect(() => {
@@ -16,7 +15,7 @@ function App() {
       const response = await fetch("https://dog.ceo/api/breeds/list/all");
       const { message } = await response.json();
       let breeds = [];
-      for (const [breed, specificBreeds] of Object.entries(message)) {
+      for (const [breed] of Object.entries(message)) {
         breeds = [
           ...breeds,
           breed,
@@ -53,13 +52,10 @@ function App() {
         breeds={breeds}
         selectedBreeds={selectedBreeds}
         setSelectedBreeds={setSelectedBreeds}
-        searchText={searchText}
-        setSearchText={setSearchText}
       />
       <Gallery
         hidden={galleryHidden}
         images={images}
-        searchText={searchText}
         hiddenBreeds={hiddenBreeds}
         setHiddenBreeds={setHiddenBreeds}
       />
