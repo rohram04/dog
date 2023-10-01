@@ -47,7 +47,7 @@ function App() {
   }, [selectedBreeds]);
 
   return (
-    <div className="flex flex-col sm:flex-row h-screen sm:p-2">
+    <div className="flex flex-col sm:flex-row h-[100dvh] sm:p-2">
       <BreedList
         hidden={!galleryHidden}
         breeds={breeds}
