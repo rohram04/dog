@@ -1,7 +1,6 @@
 # Rohith's Dog application
 
-Welcome to my dog application. It allows a user to select certain dog breeds and view pictures of the selected breeds in a gallery.
-The tech stack used for the application includes React (through create-react-app), and Tailwind CSS. The app is responsive and can be viewed on mobile too! Visit the live site hosted using [Vercel](https://vercel.com) at [https://dog.ro-hith.com](https://dog.ro-hith.com).
+Welcome to my dog application. It allows a user to select certain dog breeds and view pictures of the selected breeds in a gallery. Select a breed by clicking on the a breed name in the list on the leftside of the application. Click the selected breed name again to deselect. Users can also hide or show the images in the gallery by breed. The tech stack used for the application includes React (through create-react-app), and Tailwind CSS. The app is responsive and can be viewed on mobile too! Visit the live site hosted using [Vercel](https://vercel.com) at [https://dog.ro-hith.com](https://dog.ro-hith.com).
 
 ## After Cloning
 
