@@ -7,6 +7,7 @@ Welcome to my dog application. It allows a user to select certain dog breeds and
 Please run the `npm install` command to install all the required dependencies. \
 Then run the command `npm start` to launch the application locally.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+\Note (Node.js must be installed on your device. If it is not please install node at [https://nodejs.org/en/download](https://nodejs.org/en/download))
 
 # Getting Started with Create React App
 
