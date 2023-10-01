@@ -17,7 +17,7 @@ export default function BreedList({
     >
       <input
         onChange={(event) => {
-          setSearchText(event.target.value);
+          setSearchText(event.target.value.toLowerCase());
         }}
         className="bg-slate-200 w-full rounded-md p-2 outline-none"
         placeholder="Search a breed"
