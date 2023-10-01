@@ -1,13 +1,23 @@
-export default function Gallery({ images, hiddenBreeds, setHiddenBreeds }) {
+export default function Gallery({
+  hidden,
+  images,
+  hiddenBreeds,
+  setHiddenBreeds,
+}) {
   return (
-    <div className="grow h-screen overflow-y-scroll no-scrollbar pr-4">
+    <div
+      className={
+        "grow overflow-y-scroll no-scrollbar" +
+        (hidden ? " hidden sm:block" : "")
+      }
+    >
       {Object.entries(images).map(([breed, images]) => {
         return (
           <>
-            <div className="flex p-2">
-              <div className="text-2xl grow">{breed}</div>
+            <div className="flex p-2 bg-white rounded-md sticky top-0">
+              <div className="text-2xl sm:text-3xl grow">{breed}</div>
               <button
-                className="text-blue-500"
+                className="text-blue-500 sm:text-xl hover:text-opacity-70"
                 onClick={() => {
                   if (hiddenBreeds.includes(breed))
                     return setHiddenBreeds((previouslyHiddenBreeds) =>

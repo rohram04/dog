@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export default function BreedList({
+  hidden,
   selectedBreeds,
   breeds,
   setSelectedBreeds,
@@ -18,14 +19,19 @@ export default function BreedList({
   };
 
   return (
-    <div className="container h-screen p-2 max-w-xs flex flex-col">
+    <div
+      className={
+        "flex grow p-2 sm:max-w-xs flex-col overflow-hidden " +
+        (hidden ? " hidden sm:flex" : "")
+      }
+    >
       <input
         onChange={handleChange}
         className="bg-slate-200 w-full rounded-md p-2 outline-none"
         placeholder="Search a breed"
         type="text"
       ></input>
-      <ul className="py-2 space-y-1.5 max-w-xs h-inherit overflow-y-scroll no-scrollbar snap-y">
+      <ul className="py-2 space-y-1.5 h-inherit overflow-y-scroll no-scrollbar snap-y">
         {breeds.map((breed) => {
           if (!breed.includes(searchText)) return;
           return (
@@ -42,7 +48,7 @@ export default function BreedList({
                   ]);
                 }}
                 className={
-                  "p-2 rounded-md shadow-md w-full text-left hover:cursor-pointer" +
+                  "p-2 rounded-md shadow-md w-full text-left hover:cursor- sm:text-xl" +
                   (selectedBreeds.includes(breed)
                     ? " bg-blue-800 hover:opacity-80 text-white"
                     : " hover:bg-slate-200")

@@ -9,6 +9,7 @@ function App() {
   const [images, setImages] = useState({});
   const [hiddenBreeds, setHiddenBreeds] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [galleryHidden, setGalleryHidden] = useState(true);
 
   useEffect(() => {
     const getBreeds = async () => {
@@ -46,8 +47,9 @@ function App() {
   }, [selectedBreeds]);
 
   return (
-    <div className="flex">
+    <div className="flex flex-col sm:flex-row h-screen sm:p-2">
       <BreedList
+        hidden={!galleryHidden}
         breeds={breeds}
         selectedBreeds={selectedBreeds}
         setSelectedBreeds={setSelectedBreeds}
@@ -55,11 +57,18 @@ function App() {
         setSearchText={setSearchText}
       />
       <Gallery
+        hidden={galleryHidden}
         images={images}
         searchText={searchText}
         hiddenBreeds={hiddenBreeds}
         setHiddenBreeds={setHiddenBreeds}
       />
+      <button
+        onClick={() => setGalleryHidden((previous) => !previous)}
+        className="bg-blue-800 text-white p-2 rounded-md mx-2 mb-2 sm:hidden"
+      >
+        {galleryHidden ? "Show Gallery" : "Search Breeds"}
+      </button>
     </div>
   );
 }
